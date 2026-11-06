@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'products' => 'ផលិតផល',
+    'manage_products' => 'គ្រប់គ្រងផលិតផលរបស់អ្នក',
+    'add_product' => 'បង្កើតផលិតផល',
+    'search_placeholder' => 'ស្វែងរកផលិតផល...',
+    'all_status' => 'ស្ថានភាពទាំងអស់',
+    'active' => 'សកម្ម',
+    'inactive' => 'មិនសកម្ម',
+    'image' => 'រូបភាព',
+    'name' => 'ឈ្មោះ',
+    'sku' => 'SKU',
+    'category' => 'ប្រភេទ',
+    'brand' => 'ម៉ាក',
+    'type' => 'ប្រភេទផលិតផល',
+    'status' => 'ស្ថានភាព',
+    'actions' => 'សកម្មភាព',
+    'standard' => 'ធម្មតា',
+    'glass' => 'កញ្ចក់',
+    'view' => 'មើល',
+    'edit' => 'កែប្រែ',
+    'delete' => 'លុប',
+    'no_products' => 'រកមិនឃើញផលិតផល',
+    'no_products_description' => 'មិនមានផលិតផលសម្រាប់បង្ហាញទេ។',
+];

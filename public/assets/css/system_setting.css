@@ -1,0 +1,232 @@
+/* Apply global fonts and colors */
+body {
+    font-family: var(--english-font), var(--khmer-font) !important;
+}
+
+.btn-primary,
+.bg-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+
+.text-primary {
+    color: var(--primary-color) !important;
+}
+
+.btn-secondary,
+.bg-secondary {
+    background-color: var(--secondary-color) !important;
+    border-color: var(--secondary-color) !important;
+}
+
+.text-secondary {
+    color: var(--secondary-color) !important;
+}
+
+.brand-mark img {
+    width: var(--logo-width) !important;
+    height: var(--logo-height) !important;
+    object-fit: cover;
+    border-radius: var(--logo-radius) !important;
+}
+
+.brand-mark .brand-copy,
+.brand-mark .brand-title,
+.brand-mark .brand-subtitle {
+    color: var(--brand-color) !important;
+}
+
+.brand-mark .brand-title {
+    font-size: var(--brand-font-size) !important;
+}
+
+/* end logo and brand  */
+
+.sidebar-nav .nav-link {
+    font-size: var(--sidebar-font-size);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar-nav .nav-link:hover:not(.active) {
+    background-color: var(--sidebar-hover-bg) !important;
+}
+
+.sidebar-nav .nav-link.active {
+    background-color: var(--sidebar-active-bg) !important;
+    color: var(--sidebar-active-color) !important;
+}
+
+.sidebar-nav .nav-link.active .nav-text,
+.sidebar-nav .nav-link.active .nav-icon svg {
+    color: var(--sidebar-active-color) !important;
+    fill: var(--sidebar-active-color);
+}
+
+.sidebar-section-title {
+    color: var(--sidebar-section-color) !important;
+}
+
+/* end aside style  */
+/* Base toast styling */
+#ajax-alert {
+    border-radius: var(--toast-radius) !important;
+}
+
+/* Success Toast */
+#ajax-alert.toast-success {
+    background-color: var(--toast-bg) !important;
+    color: var(--toast-color) !important;
+}
+
+#ajax-alert.toast-success #alert-message {
+    color: var(--toast-color) !important;
+}
+
+/* Error Toast */
+#ajax-alert.toast-danger {
+    background-color: var(--toast-error-bg) !important;
+    color: var(--toast-error-color) !important;
+}
+
+#ajax-alert.toast-danger #alert-message {
+    color: var(--toast-error-color) !important;
+}
+
+/* Warning Toast (falls back or can use error/success styles) */
+#ajax-alert.toast-warning {
+    background-color: var(--toast-error-bg) !important;
+    color: var(--toast-error-color) !important;
+}
+
+#ajax-alert.toast-warning #alert-message {
+    color: var(--toast-error-color) !important;
+}
+
+/* start table style  */
+.table thead th {
+    background-color: var(--table-th-bg) !important;
+    color: var(--table-th-color) !important;
+    text-align: var(--table-th-align) !important;
+    padding: var(--table-th-padding) !important;
+    font-size: var(--table-th-font-size) !important;
+}
+
+.table tbody td {
+    text-align: var(--table-td-align) !important;
+    padding: var(--table-td-padding) !important;
+    font-size: var(--table-td-font-size) !important;
+}
+
+/* Apply styles to Bootstrap primary buttons */
+.btn-primary,
+.btn.btn-success {
+    background-color: var(--btn-custom-bg) !important;
+    border-color: var(--btn-custom-bg) !important;
+    color: var(--btn-custom-color) !important;
+}
+
+.btn-primary:hover,
+.btn.btn-success:hover {
+    background-color: var(--btn-custom-hover-bg) !important;
+    border-color: var(--btn-custom-hover-bg) !important;
+    color: var(--btn-custom-color) !important;
+}
+
+/* Apply styles to Bootstrap secondary buttons */
+.btn-secondary {
+    background-color: var(--btn-sec-bg) !important;
+    border-color: var(--btn-sec-bg) !important;
+    color: var(--btn-sec-color) !important;
+}
+
+.btn-secondary:hover {
+    background-color: var(--btn-sec-hover-bg) !important;
+    border-color: var(--btn-sec-hover-bg) !important;
+    color: var(--btn-sec-color) !important;
+}
+
+.table tbody td.txt-center {
+    text-align: center !important;
+}
+
+.table tbody td.txt-start {
+    text-align: start !important;
+    padding-left: 10px !important;
+}
+
+.table thead th.collapse {
+    padding: 0 !important;
+}
+
+.table.table-custom-padding tbody td {
+    padding: 10px 13px !important;
+}
+
+.table.custom-padding tbody td {
+    padding: 5px !important;
+}
+
+.table tbody td.image-column,
+.table.table-custom-padding tbody td.image-column,
+.table.custom-padding tbody td.image-column {
+    padding: 0 !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    max-width: 40px !important;
+    text-align: center !important;
+    vertical-align: middle !important;
+}
+
+.table tbody td.image-column img {
+    display: block;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin: 0 auto;
+}
+
+.btn-xs {
+    padding: 2px 6px !important;
+    font-size: 15px !important;
+    line-height: 1.4 !important;
+}
+
+.table th.txt-start {
+    text-align: start !important;
+    padding-left: 10px !important;
+}
+
+.page-header {
+    background: #fff;
+    border: 1px solid #e9ecef;
+    border-left: 4px solid #6f4e37;
+    padding: 18px 20px;
+}
+
+.page-header-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.page-header h4 {
+    color: #343a40;
+    font-size: 18px;
+}
+
+.page-header .breadcrumb {
+    font-size: 15px;
+}
+
+.page-header .breadcrumb a {
+    color: #6f4e37;
+    text-decoration: none;
+}
+
+.page-header .breadcrumb-item.active {
+    color: #888;
+}
+
+.page-header .btn {
+    font-size: 13px;
+}

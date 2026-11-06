@@ -1,0 +1,239 @@
+Schema::create('campuses', function (Blueprint $table) {
+$table->id();
+$table->string('name');
+$table->string('slug')->unique();
+$table->string('email')->nullable();
+$table->string('phone', 30)->nullable();
+$table->string('logo_path')->nullable();
+$table->string('status', 20)->default('active');
+$table->string('plan', 30)->default('free');
+$table->timestamp('trial_ends_at')->nullable();
+$table->string('currency', 3)->default('USD');
+$table->string('timezone', 50)->default('UTC');
+$table->string('locale', 10)->default('en');
+$table->timestamps();
+$table->index('status');
+$table->index(['status', 'plan']);
+});,
+Schema::create('users', function (Blueprint $table) {
+$table->id();
+$table->foreignId('campus_id')->nullable()
+->constrained('campuses')
+->nullOnDelete();
+$table->string('first_name');
+$table->string('last_name')->nullable();
+$table->string('profile')->nullable();
+$table->string('email')->unique();
+$table->timestamp('email_verified_at')->nullable();
+
+$table->string('password');
+$table->string('phone', 30)->nullable();
+$table->text('bio')->nullable();
+$table->string('status', 20)->default('active');
+
+$table->string('preferred_currency', 3)->default('USD');
+$table->string('locale', 10)->default('en');
+$table->string('language', 10)->default('en');
+$table->timestamp('last_login_at')->nullable();
+$table->rememberToken();
+$table->timestamps();
+$table->index(['campus_id', 'status']);
+});,Schema::create('system_settings', function (Blueprint $table) {
+$table->id();
+$table->foreignId('campus_id')
+->constrained()
+->cascadeOnDelete();
+$table->string('key');
+$table->text('value')->nullable();
+$table->string('type')->default('text');
+$table->string('group')->default('general');
+$table->timestamps();
+$table->unique([
+'campus_id',
+'key'
+]);
+});,Schema::create('expense_categories', function (Blueprint $table) {
+$table->id();
+$table->foreignId('campus_id')->constrained()->cascadeOnDelete();
+$table->string('name');
+$table->boolean('active')->default(true);
+$table->timestamps();
+});, Schema::create('revenue_categories', function (Blueprint $table) {
+$table->id();
+$table->foreignId('campus_id')->constrained()->cascadeOnDelete();
+$table->string('name');
+$table->boolean('active')->default(true);
+$table->timestamps();
+});, Schema::create('categories', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('campus_id')
+                ->nullable()
+                ->constrained('campuses')
+                ->nullOnDelete();
+            $table->foreignId('parent_id')->nullable()->constrained('categories')->nullOnDelete();
+            $table->string('name');
+            $table->string('slug')->unique();
+            $table->text('description')->nullable();
+            $table->string('img')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->timestamps();
+            $table->index(['is_active', 'sort_order']);
+            $table->unique(['campus_id', 'slug']);
+        });, Schema::create('products', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('campus_id')
+                ->nullable()
+                ->constrained('campuses')
+                ->nullOnDelete();
+            $table->foreignId('brand_id')
+                ->nullable()
+                ->constrained('brands')
+                ->nullOnDelete();
+            $table->foreignId('category_id')
+                ->constrained('categories')
+                ->restrictOnDelete();
+            $table->string('name');
+            $table->string('sku')->nullable();
+            $table->text('description')->nullable();
+            $table->enum('type', [
+                'standard',
+                'glass',
+            ])->default('standard');
+            $table->foreignId('base_unit_id')
+                ->constrained('units')
+                ->restrictOnDelete();
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->softDeletes();
+            $table->unique(['campus_id', 'sku']);
+            $table->index(['campus_id', 'name']);
+        });,Schema::create('units', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('campus_id')
+                ->nullable()
+                ->constrained('campuses')
+                ->restrictOnDelete();
+            $table->string('name', 100);
+            $table->string('symbol', 20);
+            $table->string('type', 30);
+            $table->unsignedTinyInteger('decimal_places')->default(3);
+            $table->timestamps();
+            $table->index(['campus_id', 'symbol']);
+        });,Schema::create('product_unit_options', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('campus_id')
+                ->constrained('campuses')
+                ->restrictOnDelete();
+            $table->foreignId('product_id')
+                ->constrained()
+                ->cascadeOnDelete();
+            $table->foreignId('unit_id')
+                ->constrained('units')
+                ->restrictOnDelete();
+            $table->decimal('conversion_factor', 15, 6)->default(1);
+            $table->decimal('price', 15, 3);
+            $table->boolean('is_default')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->unique(['campus_id', 'product_id', 'unit_id']);
+        });Schema::create('inventories', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('campus_id')
+                ->constrained('campuses')
+                ->restrictOnDelete();
+            $table->foreignId('product_id')
+                ->constrained()
+                ->restrictOnDelete();
+            $table->foreignId('product_variant_id')
+                ->nullable()
+                ->constrained('product_variants')
+                ->cascadeOnDelete();
+            $table->decimal('quantity', 15, 3)->default(0);
+            $table->timestamps();
+            $table->unique(['campus_id', 'product_id', 'product_variant_id']);
+        });,Schema::create('stock_movements', function (Blueprint $table) {
+            $table->id();
+
+            $table->foreignId('campus_id')
+                ->constrained('campuses')
+                ->restrictOnDelete();
+
+            $table->foreignId('product_id')
+                ->constrained()
+                ->restrictOnDelete();
+
+            $table->foreignId('product_variant_id')
+                ->nullable()
+                ->constrained('product_variants')
+                ->nullOnDelete();
+            $table->string('type');
+            $table->string('reference_type')->nullable();
+            $table->unsignedBigInteger('reference_id')->nullable();
+            $table->decimal('quantity', 15, 3);
+            $table->decimal('unit_cost', 15, 3)->nullable();
+            $table->text('notes')->nullable();
+
+            $table->timestamps();
+            $table->index(['campus_id', 'product_id', 'product_variant_id', 'created_at'], 'stock_mov_store_prod_var_created_index');
+            $table->index(['reference_type', 'reference_id'], 'stock_mov_ref_type_id_index'); // Optional: shorten this one too just in case!
+        });,Schema::create('brands', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('campus_id')
+                ->nullable()
+                ->constrained('campuses')
+                ->restrictOnDelete();
+            $table->string('name', 100);
+            $table->string('slug', 120);
+            $table->text('description')->nullable();
+            $table->string('img')->nullable();
+            $table->boolean('is_active')->default(true);
+            $table->unsignedInteger('sort_order')->default(0);
+            $table->timestamps();
+            $table->unique(['campus_id', 'slug']);
+            $table->index(['campus_id', 'name']);
+            $table->index(['campus_id', 'is_active', 'sort_order']);
+        });,Schema::create('product_units', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('product_id')->constrained('products')->cascadeOnDelete();
+            $table->foreignId('unit_id')->constrained('units')->restrictOnDelete();
+            $table->decimal('conversion_factor', 15, 6)->default(1);
+            $table->decimal('price', 12, 3)->nullable();
+            $table->boolean('is_default')->default(false);
+            $table->boolean('is_active')->default(true);
+            $table->timestamps();
+            $table->unique(['product_id', 'unit_id']);
+        });,Schema::create('inventory_transactions', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('campus_id')->constrained('campuses')->restrictOnDelete();
+            $table->foreignId('product_id')->constrained()->restrictOnDelete();
+            $table->foreignId('unit_id')->constrained()->restrictOnDelete();
+            $table->decimal('quantity', 15, 3);
+            $table->decimal('conversion_factor', 15, 6);
+            $table->decimal('base_quantity', 15, 3);
+            $table->decimal('cost_price', 15, 3)->nullable();
+            $table->string('reference_no')->nullable();
+            $table->text('note')->nullable();
+            $table->foreignId('user_id')->constrained()->restrictOnDelete();
+            $table->timestamps();
+        });,Schema::create('expenses', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('campus_id');
+            $table->unsignedBigInteger('expense_category_id');
+            $table->decimal('amount', 15, 3);
+            $table->string('reference_no')->nullable();
+            $table->text('note')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+        });  Schema::create('revenues', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger('campus_id');
+            $table->unsignedBigInteger('revenue_category_id');
+            $table->decimal('amount', 15, 3);
+            $table->string('reference_no')->nullable();
+            $table->text('note')->nullable();
+            $table->unsignedBigInteger('user_id');
+            $table->timestamps();
+        });
+    

@@ -1,0 +1,134 @@
+
+
+
+/* product design  */
+
+.product-card {
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-3px);
+    border-color: #008585 !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+.product-image-wrapper {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background: #f8f9fa;
+}
+
+.product-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.3s ease;
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.05);
+}
+
+.pos-navbar {
+    /* background: linear-gradient(110deg, #123b3b, #164e4e); */
+    background: var(--primary-color);
+    min-height: 68px;
+    border-bottom: 3px solid #008585;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, .12);
+}
+
+.pos-brand-icon {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.pos-brand-icon img {
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.pos-brand-icon+div span {
+    font-size: 15px;
+}
+
+.pos-brand-icon+div small {
+    font-size: 9px;
+    letter-spacing: 1px;
+}
+
+.pos-clock-box,
+.pos-nav-link {
+    color: #fff;
+    background: rgba(255, 255, 255, .08);
+    border: 1px solid rgba(255, 255, 255, .15);
+    padding: 10px 13px;
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.pos-clock-box i,
+.pos-nav-link i {
+    color: #f5c542;
+}
+
+.pos-nav-link:hover {
+    color: #f5c542;
+    background: rgba(255, 255, 255, .15);
+}
+
+.pos-user-info {
+    padding: 4px 12px;
+    border-left: 1px solid rgba(255, 255, 255, .2);
+}
+
+.pos-user-icon {
+    width: 36px;
+    height: 36px;
+    background: #008585;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 19px;
+}
+
+.pos-user-info span {
+    font-size: 12px;
+}
+
+.pos-user-info small {
+    font-size: 10px;
+}
+
+@media (max-width: 576px) {
+    .pos-brand-icon {
+        width: 35px;
+        height: 35px;
+    }
+
+    .pos-brand-icon+div span {
+        font-size: 11px;
+    }
+
+    .pos-clock-box {
+        padding: 8px;
+    }
+
+    .pos-nav-link {
+        padding: 8px;
+    }
+
+    .pos-user-info {
+        padding: 4px;
+    }
+}

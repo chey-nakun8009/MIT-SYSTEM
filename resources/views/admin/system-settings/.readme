@@ -1,0 +1,34 @@
+system-settings/
+│
+├── index.blade.php
+│   Main page
+│   Load all setting sections
+│
+├── form.blade.php
+│   Main <form>
+│   Save button
+│
+└── partials/
+    │
+    ├── _general.blade.php
+    │   - System name
+    │   - System logo
+    │   - Favicon
+    │
+    ├── _mail.blade.php
+    │   - Mail driver
+    │   - SMTP host
+    │   - Port
+    │   - Username
+    │   - Password
+    │
+    ├── _security.blade.php
+    │   - Password length
+    │   - Login attempts
+    │   - Session timeout
+    │
+    └── _theme.blade.php
+        - Primary color
+        - Secondary color
+        - Sidebar style
+        - Default language

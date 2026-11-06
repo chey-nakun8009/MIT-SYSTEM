@@ -1,0 +1,215 @@
+
+
+.copy-input-btn {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.input-copy-wrapper:hover .copy-input-btn,
+.input-copy-wrapper:focus-within .copy-input-btn {
+    opacity: 1;
+}
+
+.copy-input-btn {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.input-copy-wrapper:hover .copy-input-btn,
+.input-copy-wrapper:focus-within .copy-input-btn {
+    opacity: 1;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family: 'Figtree', sans-serif;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Authentication Layout
+|--------------------------------------------------------------------------
+*/
+
+.auth-wrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+
+    background: #ffffff;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Left Side
+|--------------------------------------------------------------------------
+*/
+
+.auth-left {
+    position: relative;
+
+    width: 50%;
+    min-height: 100vh;
+
+    background-image: url('/images/auth-bg.jpg');
+    background-size: cover;
+    background-position: center;
+
+    overflow: hidden;
+}
+
+.auth-left-overlay {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(0, 0, 0, 0.45);
+}
+
+.auth-left-content {
+    position: relative;
+    z-index: 2;
+
+    width: 100%;
+    height: 100vh;
+
+    padding: 50px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    color: #ffffff;
+}
+
+.auth-brand {
+    display: inline-flex;
+
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.auth-brand svg {
+    width: 70px;
+    height: 70px;
+}
+
+.auth-left-text {
+    max-width: 550px;
+}
+
+.auth-left-text h1 {
+    margin-bottom: 20px;
+
+    font-size: 48px;
+    font-weight: 700;
+}
+
+.auth-left-text p {
+    margin: 0;
+
+    font-size: 18px;
+    line-height: 1.7;
+
+    color: rgba(255, 255, 255, 0.9);
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Right Side
+|--------------------------------------------------------------------------
+*/
+
+.auth-right {
+    width: 50%;
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #ffffff;
+}
+
+.auth-form-container {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 40px;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Input Copy Button
+|--------------------------------------------------------------------------
+*/
+
+.copy-input-btn {
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+
+.input-copy-wrapper:hover .copy-input-btn,
+.input-copy-wrapper:focus-within .copy-input-btn {
+    opacity: 1;
+}
+
+
+/*
+|--------------------------------------------------------------------------
+| Mobile
+|--------------------------------------------------------------------------
+*/
+
+@media (max-width: 991.98px) {
+
+    .auth-wrapper {
+        display: block;
+    }
+
+    .auth-left {
+        width: 100%;
+        min-height: 300px;
+        height: 300px;
+    }
+
+    .auth-left-content {
+        height: 300px;
+        padding: 30px;
+    }
+
+    .auth-left-text h1 {
+        font-size: 32px;
+        margin-bottom: 10px;
+    }
+
+    .auth-left-text p {
+        font-size: 15px;
+    }
+
+    .auth-right {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .auth-form-container {
+        max-width: 500px;
+        padding: 40px 25px;
+    }
+}

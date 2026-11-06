@@ -1,0 +1,26 @@
+<?php
+
+return [
+    'products' => '产品',
+    'manage_products' => '管理您的产品',
+    'add_product' => '添加产品',
+    'search_placeholder' => '搜索产品...',
+    'all_status' => '全部状态',
+    'active' => '启用',
+    'inactive' => '停用',
+    'image' => '图片',
+    'name' => '名称',
+    'sku' => 'SKU',
+    'category' => '分类',
+    'brand' => '品牌',
+    'type' => '产品类型',
+    'status' => '状态',
+    'actions' => '操作',
+    'standard' => '标准',
+    'glass' => '玻璃',
+    'view' => '查看',
+    'edit' => '编辑',
+    'delete' => '删除',
+    'no_products' => '未找到产品',
+    'no_products_description' => '暂无可显示的产品。',
+];
