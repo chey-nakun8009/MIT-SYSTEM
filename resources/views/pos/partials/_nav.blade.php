@@ -3,11 +3,11 @@
         <a class="navbar-brand d-flex align-items-center gap-3 mb-0" href="#">
             <div class="pos-brand-icon">
                 @if (setting('system_logo'))
-                    <img src="{{ asset('uploads/settings/' . setting('system_logo')) }}"
+                    <img src="{{ asset('storage/uploads/settings/' . setting('system_logo')) }}"
                         alt="{{ setting('system_name', 'Mkot Glass') }}"
                         style="width: {{ setting('logo_width', 'auto') }};
-                               height: {{ setting('logo_height', '40px') }};
-                               border-radius: {{ setting('logo_border_radius', '0') }};">
+               height: {{ setting('logo_height', '40px') }};
+               border-radius: {{ setting('logo_border_radius', '0') }};">
                 @else
                     <img src="{{ asset('photos/school_logo.jpg') }}" alt="Logo" height="40">
                 @endif

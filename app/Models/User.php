@@ -73,11 +73,11 @@ class User extends Authenticatable
     public function showUserProfile(): string
     {
         if (!$this->profile) {
-            return asset('admin/assets/images/default-user.png');
+            return asset('photos/default_user.png');
         }
         $path = 'uploads/users/' . $this->profile;
         if (!Storage::disk('public')->exists($path)) {
-            return asset('admin/assets/images/default-user.png');
+            return asset('photos/default_user.png');
         }
         return Storage::disk('public')->url($path);
     }

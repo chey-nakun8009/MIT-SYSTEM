@@ -48,10 +48,13 @@ class Category extends Model
     }
     public function showPhoto(): string
     {
-        $path = 'uploads/categories/' . $this->img;
-        if (empty($this->img) || !Storage::disk('public')->exists($path)) {
+        if (!$this->img) {
             return asset('admin/assets/images/no-img.png');
         }
-        return asset('storage/' . $path);
+        $path = 'uploads/categories/' . $this->img;
+        if (!Storage::disk('public')->exists($path)) {
+            return asset('admin/assets/images/no-img.png');
+        }
+        return Storage::disk('public')->url($path);
     }
 }

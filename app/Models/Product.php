@@ -135,10 +135,13 @@ class Product extends Model
 
     public function productPhoto(): string
     {
-        $path = 'uploads/products/' . $this->image;
-        if (empty($this->image) || !Storage::disk('public')->exists($path)) {
-            return asset('admin/assets/images/no-img.png');
+        if (!$this->image) {
+            return asset('photos/no_img.png');
         }
-        return asset('storage/' . $path);
+        $path = 'uploads/products/' . $this->image;
+        if (!Storage::disk('public')->exists($path)) {
+            return asset('photos/no_img.png');
+        }
+        return Storage::disk('public')->url($path);
     }
 }

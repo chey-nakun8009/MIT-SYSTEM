@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OrderItem extends Model
 {
     protected $fillable = [
-        'campus_id', // Changed store_id to campus_id to match migration
+        'campus_id',
         'order_id',
         'product_id',
         'unit_id',

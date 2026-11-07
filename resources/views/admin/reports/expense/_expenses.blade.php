@@ -42,9 +42,9 @@
             </div>
         </div>
     </div>
-
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h5 class="fw-bold text-danger mb-0">របាយការណ៍ចំណាយ</h5>
+        <h5 class="fw-bold text-dark mb-0 text-danger"><i class="bi bi-receipt-cutoff me-2"></i>របាយការណ៍ចំណាយ</h5>
+        <x-per-page-selector :route="route('reports.expenses')" />
     </div>
     <form action="{{ route('reports.expenses.print-selected') }}" method="POST" target="_blank" id="printSelectedForm"
         onsubmit="return validatePrintSelection(event)">
@@ -98,7 +98,11 @@
             </table>
         </div>
     </form>
-
+    @if ($expenses->hasPages())
+        <div class="d-flex justify-content-end mt-2">
+            {{ $expenses->links('vendor.pagination.bootstrap-5') }}
+        </div>
+    @endif
     <script>
         document.getElementById('selectAll').addEventListener('change', function() {
             let checkboxes = document.querySelectorAll('.row-checkbox');

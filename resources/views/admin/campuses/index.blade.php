@@ -5,13 +5,13 @@
                 <div class="d-flex align-items-center gap-3">
                     <div class="page-header-icon d-flex align-items-center justify-content-center">
                         @if (setting('system_logo'))
-                            <img src="{{ asset('uploads/settings/' . setting('system_logo')) }}"
+                            <img src="{{ asset('storage/uploads/settings/' . setting('system_logo')) }}"
                                 alt="{{ setting('system_name', 'Mkot Glass') }}" class="d-block"
                                 style="width: {{ setting('logo_width', 'auto') }};
                                 height: {{ setting('logo_height', '40px') }};
                                 border-radius: {{ setting('logo_border_radius', '0') }};">
                         @else
-                            <img src="{{ asset('photos/mkot.png') }}" alt="Logo" height="40" class="d-block">
+                            <img src="{{ asset('photos/login_logo.png') }}" alt="Logo" height="40" class="d-block">
                         @endif
                     </div>
                     <div>

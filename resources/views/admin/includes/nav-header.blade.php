@@ -3,12 +3,12 @@
          <div class="container-fluid">
              <a class="navbar-brand d-flex align-items-center" href="./index.html">
                  @if (setting('system_logo'))
-                     <img src="{{ asset('uploads/settings/' . setting('system_logo')) }}"
-                         alt="{{ setting('system_name', 'Mkot Glass') }}" height="40"
+                     <img src="{{ asset('storage/uploads/settings/' . setting('system_logo')) }}"
+                         alt="{{ setting('system_name', 'logo') }}" height="40"
                          class="d-inline-block align-text-top me-2"
                          style="width: {{ setting('logo_width', 'auto') }}; height: {{ setting('logo_height', '40px') }}; border-radius: {{ setting('logo_border_radius', '0') }};">
                  @else
-                     <img src="{{ asset('photos/mkot.png') }}" alt="Logo" height="40"
+                     <img src="{{ asset('photos/login_logo.png') }}" alt="Logo" height="40"
                          class="d-inline-block align-text-top me-2">
                  @endif
                  <span class="h4 mb-0 fw-bold"
@@ -109,13 +109,22 @@
                          <i class="bi bi-chevron-down ms-2"></i>
                      </button>
                      <ul class="dropdown-menu dropdown-menu-end">
-                         <li><a class="dropdown-item" href="{{ route('system-settings.index') }}"><i
-                                     class="bi bi-gear me-2"></i>Settings</a></li>
+                         <li>
+                             <a class="dropdown-item" href="{{ route('system-settings.index') }}">
+                                 <i class="bi bi-gear me-2"></i>Settings
+                             </a>
+                         </li>
                          <li>
                              <hr class="dropdown-divider">
                          </li>
-                         <li><a class="dropdown-item" href="#"><i
-                                     class="bi bi-box-arrow-right me-2"></i>Logout</a></li>
+                         <li>
+                             <form method="POST" action="{{ route('logout') }}">
+                                 @csrf
+                                 <button type="submit" class="dropdown-item text-danger">
+                                     <i class="bi bi-box-arrow-right me-2"></i>Logout
+                                 </button>
+                             </form>
+                         </li>
                      </ul>
                  </div>
              </div>

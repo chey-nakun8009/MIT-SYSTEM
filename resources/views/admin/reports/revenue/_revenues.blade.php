@@ -1,6 +1,5 @@
 @extends('admin.reports.index')
 @section('settings_content')
-    <!-- Filter Bar -->
     <div class="card bg-light border-0 p-3 mb-4 rounded-0 d-print-none">
         <form method="GET" action="{{ route('reports.revenues') }}" class="row g-3 align-items-end">
             <div class="col-md-3">
@@ -40,6 +39,7 @@
 
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h5 class="fw-bold text-success mb-0">របាយការណ៍ចំណូល</h5>
+        <x-per-page-selector :route="route('reports.revenues')" />
     </div>
     <form action="{{ route('reports.revenues.print-selected') }}" method="POST" target="_blank" id="printSelectedForm"
         onsubmit="return validatePrintSelection(event)">
@@ -93,7 +93,11 @@
             </table>
         </div>
     </form>
-
+    @if ($revenues->hasPages())
+        <div class="d-flex justify-content-end mt-2">
+            {{ $revenues->links('vendor.pagination.bootstrap-5') }}
+        </div>
+    @endif
     <script>
         document.getElementById('selectAll').addEventListener('change', function() {
             let checkboxes = document.querySelectorAll('.row-checkbox');

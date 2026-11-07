@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SystemSetting;
 
@@ -91,26 +91,17 @@ class SystemSettingController extends Controller
         foreach ($data as $key => $value) {
             if ($request->hasFile($key)) {
                 $file = $request->file($key);
+
                 $old = SystemSetting::where([
                     'campus_id' => $campusId,
                     'key' => $key
                 ])->first();
-
-                if (
-                    $old &&
-                    $old->value &&
-                    File::exists(public_path('uploads/settings/' . $old->value))
-                ) {
-                    File::delete(public_path('uploads/settings/' . $old->value));
+                if ($old && $old->value && Storage::disk('public')->exists('uploads/system-setting/' . $old->value)) {
+                    Storage::disk('public')->delete('uploads/settings/' . $old->value);
                 }
-
-                $folder = public_path('uploads/settings');
-                if (!File::exists($folder)) {
-                    File::makeDirectory($folder, 0755, true);
-                }
-
                 $filename = time() . '_' . uniqid() . '.' . $file->getClientOriginalExtension();
-                $file->move($folder, $filename);
+                $file->storeAs('uploads/settings', $filename, 'public');
+
                 $value = $filename;
             } elseif (in_array($key, ['system_logo', 'favicon']) && is_null($value)) {
                 continue;

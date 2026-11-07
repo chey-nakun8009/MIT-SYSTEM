@@ -5,13 +5,14 @@
                 <div class="d-flex align-items-center gap-3">
                     <div class="page-header-icon d-flex align-items-center justify-content-center">
                         @if (setting('system_logo'))
-                            <img src="{{ asset('uploads/settings/' . setting('system_logo')) }}"
+                            <img src="{{ asset('storage/uploads/settings/' . setting('system_logo')) }}"
                                 alt="{{ setting('system_name', 'Mkot Glass') }}" class="d-block"
                                 style="width: {{ setting('logo_width', 'auto') }};
                                 height: {{ setting('logo_height', '40px') }};
                                 border-radius: {{ setting('logo_border_radius', '0') }};">
                         @else
-                            <img src="{{ asset('photos/mkot.png') }}" alt="Logo" height="40" class="d-block">
+                            <img src="{{ asset('photos/login_logo.png') }}" alt="Logo" height="40"
+                                class="d-block">
                         @endif
                     </div>
                     <div>
@@ -163,7 +164,6 @@
             const conversionFactorLabel = document.getElementById('conversionFactorLabel');
             const totalCalculatedBaseQty = document.getElementById('totalCalculatedBaseQty');
 
-            // Trigger unit options load on page load for the selected product
             function loadUnits(selectedUnitId = null) {
                 const productId = productSelect.value;
                 if (!productId) return;
@@ -176,8 +176,6 @@
                                 `${data.base_unit.name} (${data.base_unit.symbol || ''})` : '-';
 
                             let optionsHtml = '<option value="">-- ជ្រើសរើសឯកតា --</option>';
-
-                            // Include Base Unit option
                             if (data.base_unit) {
                                 const isSelected = selectedUnitId == data.base_unit.id ? 'selected' : '';
                                 optionsHtml +=
@@ -214,8 +212,6 @@
 
             unitSelect.addEventListener('change', calculateTotal);
             quantityInput.addEventListener('input', calculateTotal);
-
-            // Preload unit list based on current active transaction unit
             loadUnits({{ $inventoryTransaction->unit_id }});
         });
     </script>

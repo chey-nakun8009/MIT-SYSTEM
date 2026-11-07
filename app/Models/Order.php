@@ -14,7 +14,7 @@ class Order extends Model
 
     protected $fillable = [
         'order_number',
-        'campus_id', // Added campus_id
+        'campus_id',
         'user_id',
         'subtotal',
         'tax_amount',

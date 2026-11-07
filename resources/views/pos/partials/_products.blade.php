@@ -46,7 +46,7 @@
         </div>
 
     @empty
-        <div class="col-12 text-center py-5">
+        <div class="col-12 py-5 text-center">
             <i class="bi bi-box-seam fs-1 text-muted d-block mb-2"></i>
             <p class="text-muted mb-0">មិនមានផលិតផលក្នុងស្តុក</p>
         </div>

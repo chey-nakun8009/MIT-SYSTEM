@@ -5,7 +5,7 @@
                 class="bg-primary card-header text-white d-flex justify-content-between align-items-center py-1 rounded-0">
                 <div class="d-flex align-items-center gap-3">
                     @if (setting('system_logo'))
-                        <img src="{{ asset('uploads/settings/' . setting('system_logo')) }}"
+                        <img src="{{ asset('storage/uploads/settings/' . setting('system_logo')) }}"
                             alt="{{ setting('system_name', 'MTI') }}" height="40"
                             class="d-inline-block align-text-top me-2"
                             style="width: {{ setting('logo_width', 'auto') }}; height: {{ setting('logo_height', '40px') }}; border-radius: {{ setting('logo_border_radius', '0') }};">

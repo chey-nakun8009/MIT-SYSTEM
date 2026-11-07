@@ -12,9 +12,9 @@
         </label>
         <div class="d-flex align-items-center gap-2">
             @if (isset($settings['system_logo']) && $settings['system_logo']->value)
-                <img src="{{ asset('uploads/settings/' . $settings['system_logo']->value) }}" width="38"
+                <img src="{{ asset('storage/uploads/settings/' . $settings['system_logo']->value) }}" width="38"
                     height="38" class="rounded border p-1 bg-light object-fit-contain flex-shrink-0"
-                    alt="L">
+                    alt="Logo">
             @else
                 <span class="text-muted small text-nowrap">គ្មានរូប</span>
             @endif
@@ -27,7 +27,7 @@
         </label>
         <div class="d-flex align-items-center gap-2">
             @if (isset($settings['favicon']) && $settings['favicon']->value)
-                <img src="{{ asset('uploads/settings/' . $settings['favicon']->value) }}" alt="F"
+                <img src="{{ asset('storage/uploads/settings/' . $settings['favicon']->value) }}" alt="Favicon"
                     width="38" height="38" class="rounded border p-1 bg-light object-fit-contain flex-shrink-0">
             @else
                 <span class="text-muted small text-nowrap">No icon</span>

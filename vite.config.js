@@ -10,6 +10,10 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/css/admin.css',
                 'resources/js/admin.js',
+                'resources/css/style.css',
+                'resources/js/cart_action.js',
+                'resources/js/cart_renderer.js',
+                'resources/js/store_order.js',
             ],
             refresh: true,
             fonts: [

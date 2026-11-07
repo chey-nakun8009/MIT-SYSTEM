@@ -1,13 +1,7 @@
 <form method="POST" action="{{ route('system-settings.update') }}" enctype="multipart/form-data">
     @csrf
-    {{-- @method('PUT') --}}
     @method('PATCH')
     @include('admin.system-settings.partials._general')
-    {{-- <hr> --}}
-    {{-- @include('admin.system-settings.partials._mail') --}}
-    {{-- <hr> --}}
-    {{-- @include('admin.system-settings.partials._security') --}}
-    {{-- <hr> --}}
     @include('admin.system-settings.partials._theme')
     <div class="mt-4">
 

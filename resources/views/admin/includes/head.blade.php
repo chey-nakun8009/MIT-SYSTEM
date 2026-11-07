@@ -19,7 +19,7 @@
     <meta name="twitter:image"
         content="{{ $ogImage ?? (setting('system_logo') ? asset('uploads/settings/' . setting('system_logo')) : asset('photos/default_logo.png')) }}">
     @if (setting('favicon'))
-        <link rel="icon" href="{{ asset('uploads/settings/' . setting('favicon')) }}" type="image/x-icon">
+        <link rel="icon" href="{{ asset('storage/uploads/settings/' . setting('favicon')) }}" type="image/x-icon">
     @else
         <link rel="icon" href="{{ asset('photos/school_logo.jpg') }}" type="image/x-icon">
     @endif

@@ -57,7 +57,10 @@
             <div class="d-flex align-items-center">
                 <div class="text-center" style="width: 100px; flex-shrink: 0;">
                     @if (setting('system_logo'))
-                        <img src="{{ asset('uploads/settings/' . setting('system_logo')) }}" alt="System Logo"
+                        <img src="{{ asset('storage/uploads/settings/' . setting('system_logo')) }}" alt="System Logo"
+                            style="width: 85px; height: 85px; object-fit: contain;">
+                    @else
+                        <img src="{{ asset('photos/login_logo.png') }}" alt="System Logo"
                             style="width: 85px; height: 85px; object-fit: contain;">
                     @endif
                 </div>

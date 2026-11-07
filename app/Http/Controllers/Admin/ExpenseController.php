@@ -5,25 +5,35 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Expense;
+use App\Traits\WithPagination;
 
 class ExpenseController extends Controller
 {
+    use WithPagination;
     public function expenses(Request $request)
     {
         $query = Expense::query();
         if ($request->filled('start_date') && $request->filled('end_date')) {
-            $query->whereBetween('created_at', [$request->start_date . ' 00:00:00', $request->end_date . ' 23:59:59']);
+            $query->whereBetween('created_at', [
+                $request->start_date . ' 00:00:00', 
+                $request->end_date . ' 23:59:59'
+            ]);
         }
-
-        $expenses = $query->with(['category', 'user'])->latest()->get();
         $totalExpenses = (clone $query)->sum('amount');
 
         $operatingCosts = (clone $query)->whereHas('category', function ($q) {
             $q->where('name', 'like', '%Operations%');
         })->sum('amount');
+
         $payrollCosts = (clone $query)->whereHas('category', function ($q) {
             $q->where('name', 'like', '%Payroll%');
         })->sum('amount');
+        $perPage = $this->getPerPage($request); 
+        $expenses = $query->with(['category', 'user'])
+            ->latest()
+            ->paginate($perPage)
+            ->appends($request->query());
+
         return view('admin.reports.expense._expenses', compact(
             'expenses',
             'totalExpenses',
@@ -31,7 +41,6 @@ class ExpenseController extends Controller
             'payrollCosts'
         ));
     }
-
     public function printSelectedExpense(Request $request)
     {
         $ids = $request->input('ids', []);
